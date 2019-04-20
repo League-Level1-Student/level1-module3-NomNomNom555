@@ -1,11 +1,33 @@
 
-public class BIRDIE {
-	 PImage back;
+
+	PImage back;
      PImage pipeBottom;
      PImage pipeTop;
      PImage bird;
-      int birdX;
-      int birdY;
+      int birdX= 10;
+      int birdY=200;
+      int birdYVelocity = 30;
+      int gravity=1;
+      int pipeTopHeight=400;
+      int pipeBottomHeight=-130;
+   int pipeX= 250;
+         int pipeGap=100;
+     int lowerY =400;
+     int upperY =-130;
+      
+      
+      
+      
+      void teleportPipes(){
+        if(pipeX==0){
+          pipeX=450;
+          pipeTopHeight=(int ) random(50, 400);
+            pipeBottomHeight=(int ) random(-130, 400);
+            lowerY= upperY + pipeTopHeight + pipeGap;
+        }
+         
+      }
+      
         void setup() {
           size(700,700);
           back = loadImage("flappyBackground.jpg");
@@ -14,18 +36,25 @@ public class BIRDIE {
             pipeTop = loadImage("topPipe.png");
             bird = loadImage("bird.png");
             bird.resize(50,50);
-            
+           
         }
+        
          void draw() {
             background(back);
-            image (pipeBottom,250,375);
-            image (pipeTop,250,-130);
+            image (pipeBottom,pipeX,lowerY);
+            image (pipeTop,pipeX,upperY);
             image (bird, birdX, birdY);
-            birdY ++;
-            if(mousePressed){
-            birdY-=30;
-            }
-            rect(1,700,700,1);
+            teleportPipes();
+            birdY += gravity;
+            pipeX -= 2;
+            
+            
+         }
+         void mousePressed(){
+        
+            birdY -= birdYVelocity;
+            
+          },700,700,1);
           }
      
-}
+
