@@ -1,6 +1,4 @@
-
-
-	PImage back;
+PImage back;
      PImage pipeBottom;
      PImage pipeTop;
      PImage bird;
@@ -8,22 +6,32 @@
       int birdY=200;
       int birdYVelocity = 30;
       int gravity=1;
-      int pipeTopHeight=400;
-      int pipeBottomHeight=-130;
+      int pipeTopHeight=-350;
+      
+      int pipeWidth= 5;
    int pipeX= 250;
-         int pipeGap=100;
-     int lowerY =400;
-     int upperY =-130;
+         int pipeGap=150;
+     int lowerY;
+     
+     
       
       
-      
+     boolean intersectsPipes() { 
+     if (birdY < pipeTopHeight + 400 && birdX > pipeX && birdX < (pipeX+pipeWidth)){
+          return true; }
+     else if (birdY>lowerY && birdX > pipeX && birdX < (pipeX+pipeWidth)) {
+          return true; }
+     else { return false; }
+}
+
+
       
       void teleportPipes(){
         if(pipeX==0){
           pipeX=450;
-          pipeTopHeight=(int ) random(50, 400);
-            pipeBottomHeight=(int ) random(-130, 400);
-            lowerY= upperY + pipeTopHeight + pipeGap;
+          pipeTopHeight=(int ) random(-350,-150);
+            lowerY= pipeTopHeight +400 + pipeGap;
+            
         }
          
       }
@@ -36,25 +44,29 @@
             pipeTop = loadImage("topPipe.png");
             bird = loadImage("bird.png");
             bird.resize(50,50);
+            lowerY=400;
            
         }
         
          void draw() {
             background(back);
             image (pipeBottom,pipeX,lowerY);
-            image (pipeTop,pipeX,upperY);
+            image (pipeTop,pipeX,pipeTopHeight);
             image (bird, birdX, birdY);
             teleportPipes();
             birdY += gravity;
-            pipeX -= 2;
-            
-            
+            pipeX-=2;
+            intersectsPipes();
+            if(intersectsPipes()==true){
+              stop();
+              println("worked");
+            }
          }
+         
          void mousePressed(){
         
             birdY -= birdYVelocity;
             
-          },700,700,1);
+          
           }
-     
 
