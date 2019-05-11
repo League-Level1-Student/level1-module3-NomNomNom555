@@ -4,8 +4,8 @@ PImage back;
      PImage bird;
       int birdX= 10;
       int birdY=200;
-      int birdYVelocity = 30;
-      int gravity=1;
+      int birdYVelocity = 50;
+      int gravity= 3;
       int pipeTopHeight=-350;
       
       int pipeWidth= 5;
@@ -61,7 +61,11 @@ PImage back;
               stop();
               println("worked");
             }
-         }
+              else if(birdY>= 570 || birdY<= 0){
+                stop();
+              }
+            }
+         
          
          void mousePressed(){
         
