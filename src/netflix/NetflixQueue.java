@@ -7,6 +7,7 @@ package netflix;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class NetflixQueue {
@@ -16,6 +17,13 @@ public class NetflixQueue {
 	public Movie getBestMovie(){
 		this.sortMoviesByRating();
 		return movies.get(0);
+	}
+	
+	public Movie getSecondBestMovie() {
+		this.sortMoviesByRating();
+		System.out.println(Arrays.toString(movies.toArray()));
+		return movies.get(1);
+		
 	}
 
 	public void addMovie(Movie movie) {

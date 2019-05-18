@@ -1,16 +1,18 @@
 package netflix;
 
+import javax.swing.JOptionPane;
+
 public class The_Program {
 public static void main(String[] args) {
-	Movie one = new Movie("Avengers:Endgame", 5);
-	Movie owo = new Movie("Avengers: Infinity War", 4);
-	Movie three = new Movie("Spiderman: Homecoming", 4);
+	Movie one = new Movie("Avengers Endgame", 5);
+	Movie owo = new Movie("Avengers Infinity War", 4);
+	Movie three = new Movie("Spiderman Homecoming", 4);
 	Movie four = new Movie ("Captain Marvel", 3);
 	Movie five = new Movie ("Pizza Time!", 2);
 	NetflixQueue flicks = new NetflixQueue();
 	
 	
-System.out.println(one.getTitle());	
+one.getTitle();
 System.out.println(owo.getTitle());
 System.out.println(three.getTitle());
 System.out.println(four.getTitle());
@@ -40,7 +42,12 @@ System.out.println(five.getTicketPrice());
 	flicks.getMovie(2);
 	flicks.getMovie(3);
 	flicks.getMovie(4);
-	
+flicks.printMovies();
+flicks.sortMoviesByRating();
+String something = flicks.getBestMovie().getTitle();
+JOptionPane.showMessageDialog(null,"The best movie is " + something + " ." );
+String anything = flicks.getSecondBestMovie().getTitle();
+JOptionPane.showMessageDialog(null,"The second best movie is " + anything + " ." );
 	
 }
 }
